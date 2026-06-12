@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Maria Luiza ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson:    #C0283D;
+      --rose:       #E8637A;
+      --blush:      #F9D0D8;
+      --ivory:      #FFF8F5;
+      --dark:       #1A0A0E;
+      --gold:       #C9975A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ivory);
+      color: var(--dark);
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── PARTICLES ── */
+    #hearts-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      z-index: 1;
+      background: radial-gradient(ellipse at 50% 60%, #f9d0d8 0%, var(--ivory) 70%);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--crimson);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+    }
+
+    .hero-name span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #7a4a55;
+      max-width: 460px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .scroll-cta {
+      display: inline-block;
+      width: 44px; height: 44px;
+      border: 2px solid var(--rose);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: bounce 2s ease-in-out infinite;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--rose);
+      font-size: 1.1rem;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(8px); }
+    }
+
+    /* ── BIG HEART SVG ── */
+    .heart-hero {
+      width: clamp(120px, 25vw, 220px);
+      margin-bottom: 2rem;
+      animation: pulse-heart 1.8s ease-in-out infinite;
+      filter: drop-shadow(0 8px 32px rgba(192,40,61,0.22));
+    }
+
+    @keyframes pulse-heart {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.07); }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-heading {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-style: italic;
+      color: var(--crimson);
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── LANGUAGE GRID ── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .lang-card {
+      background: #fff;
+      border: 1px solid #f0d5db;
+      border-radius: 16px;
+      padding: 1.5rem 1.4rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lang-card::before {
+      content: '❤';
+      position: absolute;
+      top: -10px; right: -6px;
+      font-size: 3.5rem;
+      opacity: 0.06;
+      color: var(--crimson);
+      pointer-events: none;
+    }
+
+    .lang-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(192,40,61,0.13);
+    }
+
+    .lang-flag {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .lang-name {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .lang-phrase {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--crimson);
+      line-height: 1.4;
+    }
+
+    .lang-translation {
+      font-size: 0.78rem;
+      color: #9a6672;
+      font-weight: 300;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      text-align: center;
+      color: var(--rose);
+      font-size: 1.5rem;
+      letter-spacing: 0.5rem;
+      opacity: 0.5;
+      margin: 0.5rem 0;
+    }
+
+    /* ── LETTER SECTION ── */
+    .letter-section {
+      background: linear-gradient(160deg, var(--crimson) 0%, #7b1728 100%);
+      color: #fff;
+      padding: 6rem 1.5rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .letter-section::before {
+      content: '♥';
+      position: absolute;
+      font-size: 40vw;
+      color: rgba(255,255,255,0.03);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .letter-box {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .letter-box .section-label { color: var(--blush); }
+
+    .letter-box .section-heading { color: #fff; }
+
+    .letter-body {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-style: italic;
+      line-height: 2;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .letter-body strong {
+      color: var(--blush);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      font-size: 0.8rem;
+      color: var(--rose);
+      letter-spacing: 0.1em;
+    }
+
+    footer .big-heart {
+      display: block;
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+      animation: pulse-heart 1.8s ease-in-out infinite;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .lang-grid { grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+      .lang-card { padding: 1.1rem 1rem; }
+      .lang-phrase { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="hearts-canvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="heart-hero" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 85 C50 85 5 52 5 28 C5 14 15 5 28 5 C36 5 44 10 50 18 C56 10 64 5 72 5 C85 5 95 14 95 28 C95 52 50 85 50 85Z"
+          fill="url(#hg)" stroke="none"/>
+    <defs>
+      <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#e8637a"/>
+        <stop offset="100%" style="stop-color:#C0283D"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <p class="hero-eyebrow">Dia dos Namorados · 12 de Junho</p>
+  <h1 class="hero-title">Eu te amo,</h1>
+  <p class="hero-name"><span>Maria Luiza Ferreira Lopes</span></p>
+  <p class="hero-subtitle">
+    Em todos os idiomas do mundo, em todos os momentos do tempo,
+    o meu amor por você permanece o mesmo.
+  </p>
+  <a class="scroll-cta" href="#languages">↓</a>
+</section>
+
+<!-- LANGUAGES -->
+<section class="section" id="languages">
+  <p class="section-label">Para você, em todo o mundo</p>
+  <h2 class="section-heading">Eu amo Maria Luiza<br>em todas as línguas</h2>
+
+  <div class="lang-grid">
+
+    <div class="lang-card">
+      <span class="lang-flag">🇧🇷</span>
+      <span class="lang-name">Português</span>
+      <p class="lang-phrase">"Meu coração só existe por causa de você, Maria Luiza"</p>
+      <p class="lang-translation">My heart only exists because of you, Maria Luiza</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇺🇸</span>
+      <span class="lang-name">English</span>
+      <p class="lang-phrase">"Maria Luiza, you are the one my soul has always searched for"</p>
+      <p class="lang-translation">Maria Luiza, você é aquela que minha alma sempre buscou</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇫🇷</span>
+      <span class="lang-name">Françês</span>
+      <p class="lang-phrase">"Maria Luiza, tu es la lumière de ma vie entière"</p>
+      <p class="lang-translation">Maria Luiza, você é a luz de toda a minha vida</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇪🇸</span>
+      <span class="lang-name">Español</span>
+      <p class="lang-phrase">"Maria Luiza, eres el latido que le da sentido a todo"</p>
+      <p class="lang-translation">Maria Luiza, você é a batida que dá sentido a tudo</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇩🇪</span>
+      <span class="lang-name">Deutsch - Alemão</span>
+      <p class="lang-phrase">"Maria Luiza, du bist der Grund, warum mein Herz schlägt"</p>
+      <p class="lang-translation">Maria Luiza, você é o motivo pelo qual meu coração bate</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇮🇹</span>
+      <span class="lang-name">Italiano</span>
+      <p class="lang-phrase">"Maria Luiza, sei il sogno più bello che abbia mai vissuto"</p>
+      <p class="lang-translation">Maria Luiza, você é o sonho mais lindo que já vivi</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇯🇵</span>
+      <span class="lang-name">日本語 · Japonês</span>
+      <p class="lang-phrase">"マリア・ルイザ、あなたは私の世界そのものです"</p>
+      <p class="lang-translation">Maria Luiza, você é o meu mundo inteiro</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇨🇳</span>
+      <span class="lang-name">中文 · Chinês</span>
+      <p class="lang-phrase">"玛丽亚·路易莎，你是我心中唯一的星光"</p>
+      <p class="lang-translation">Maria Luiza, você é a única luz das estrelas no meu coração</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇷🇺</span>
+      <span class="lang-name">Русский · Russo</span>
+      <p class="lang-phrase">"Мария Луиза, ты — мой вечный рассвет"</p>
+      <p class="lang-translation">Maria Luiza, você é o meu eterno amanhecer</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇸🇦</span>
+      <span class="lang-name">العربية · Árabe</span>
+      <p class="lang-phrase">"ماريا لويزا، أنتِ وطني الذي أسكن فيه"</p>
+      <p class="lang-translation">Maria Luiza, você é a pátria onde minha alma habita</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇰🇷</span>
+      <span class="lang-name">한국어 · Coreano</span>
+      <p class="lang-phrase">"마리아 루이자, 당신은 내 가장 아름다운 이유예요"</p>
+      <p class="lang-translation">Maria Luiza, você é o meu motivo mais bonito para tudo</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇮🇳</span>
+      <span class="lang-name">हिन्दी · Hindi</span>
+      <p class="lang-phrase">"मारिया लुइज़ा, तुम मेरी सांसों में बसी हो"</p>
+      <p class="lang-translation">Maria Luiza, você mora em cada respiração minha</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇬🇷</span>
+      <span class="lang-name">Ελληνικά · Grego</span>
+      <p class="lang-phrase">"Μαρία Λουίζα, είσαι ο ουρανός που ονειρεύομαι"</p>
+      <p class="lang-translation">Maria Luiza, você é o céu que eu sonho</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇵🇱</span>
+      <span class="lang-name">Polski · Polonês</span>
+      <p class="lang-phrase">"Mario Luizo, jesteś najpiękniejszą częścią mojego życia"</p>
+      <p class="lang-translation">Maria Luiza, você é a parte mais bonita da minha vida</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇸🇪</span>
+      <span class="lang-name">Svenska · Sueco</span>
+      <p class="lang-phrase">"Maria Luiza, du är hemmet som mitt hjärta längtar efter"</p>
+      <p class="lang-translation">Maria Luiza, você é o lar que meu coração deseja</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇳🇱</span>
+      <span class="lang-name">Nederlands · Holandês</span>
+      <p class="lang-phrase">"Maria Luiza, jij maakt elke dag de moeite waard"</p>
+      <p class="lang-translation">Maria Luiza, você faz cada dia valer a pena</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇹🇷</span>
+      <span class="lang-name">Türkçe · Turco</span>
+      <p class="lang-phrase">"Maria Luiza, sen benim her şeyimsin, her nefesimsin"</p>
+      <p class="lang-translation">Maria Luiza, você é tudo que tenho, cada respiração minha</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇻🇳</span>
+      <span class="lang-name">Tiếng Việt · Vietnamita</span>
+      <p class="lang-phrase">"Maria Luiza, em là lý do trái tim anh còn đập"</p>
+      <p class="lang-translation">Maria Luiza, você é o motivo pelo qual meu coração ainda bate</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇮🇩</span>
+      <span class="lang-name">Bahasa Indonesia</span>
+      <p class="lang-phrase">"Maria Luiza, kamu adalah puisi terindah dalam hidupku"</p>
+      <p class="lang-translation">Maria Luiza, você é o poema mais lindo da minha vida</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🏛️</span>
+      <span class="lang-name">Latim · Latin</span>
+      <p class="lang-phrase">"Maria Luiza, tu es vita mea et anima mea"</p>
+      <p class="lang-translation">Maria Luiza, você é a minha vida e a minha alma</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇺🇦</span>
+      <span class="lang-name">Українська · Ucraniano</span>
+      <p class="lang-phrase">"Маріє Луїзо, ти — найкрасивіша пісня мого серця"</p>
+      <p class="lang-translation">Maria Luiza, você é a canção mais bonita do meu coração</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇮🇱</span>
+      <span class="lang-name">עברית · Hebraico</span>
+      <p class="lang-phrase">"מריה לואיזה, את האור שמאיר את כל חיי"</p>
+      <p class="lang-translation">Maria Luiza, você é a luz que ilumina toda a minha vida</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇹🇭</span>
+      <span class="lang-name">ภาษาไทย · Tailandês</span>
+      <p class="lang-phrase">"มาเรีย ลุยซา คุณคือเหตุผลที่ฉันยิ้มทุกวัน"</p>
+      <p class="lang-translation">Maria Luiza, você é o motivo do meu sorriso todo dia</p>
+    </div>
+
+    <div class="lang-card">
+      <span class="lang-flag">🇷🇴</span>
+      <span class="lang-name">Română · Romeno</span>
+      <p class="lang-phrase">"Maria Luiza, ești tot ce am visat și tot ce voi visa"</p>
+      <p class="lang-translation">Maria Luiza, você é tudo que já sonhei e tudo que sonharei</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- LETTER -->
+<section class="letter-section">
+  <div class="letter-box">
+    <p class="section-label">Uma mensagem do coração</p>
+    <h2 class="section-heading">Para você, Maria Luiza</h2>
+    <p class="letter-body">
+      Em cada canto do mundo, em cada língua que o ser humano já inventou
+      para tentar traduzir aquilo que sente, <strong>o meu amor por você
+      é sempre a mesma coisa</strong> — imensurável, inabalável, verdadeiro.<br><br>
+      <strong>Maria Luiza Ferreira Lopes</strong>, você é a pessoa que faz
+      cada dia valer a pena. Este Dia dos Namorados não é sobre flores
+      ou presentes — é sobre deixar o universo inteiro saber que
+      <strong>você é amada, profundamente, de todo o meu coração.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="big-heart">♥</span>
+  Feito com amor para <strong>Luzi</strong> · Dia dos Namorados 2026
+</footer>
+
+<script>
+  /* ── FLOATING HEARTS CANVAS ── */
+  const canvas = document.getElementById('hearts-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const HEARTS = [];
+  const COUNT  = 28;
+
+  function makeHeart() {
+    return {
+      x: Math.random() * window.innerWidth,
+      y: window.innerHeight + 40,
+      size: 10 + Math.random() * 18,
+      speed: 0.4 + Math.random() * 0.8,
+      drift: (Math.random() - 0.5) * 0.4,
+      opacity: 0.12 + Math.random() * 0.18,
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.02,
+    };
+  }
+
+  for (let i = 0; i < COUNT; i++) {
+    const h = makeHeart();
+    h.y = Math.random() * window.innerHeight; // start scattered
+    HEARTS.push(h);
+  }
+
+  function drawHeart(x, y, size, rot, opacity) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = '#C0283D';
+    ctx.beginPath();
+    const s = size / 10;
+    ctx.moveTo(0, s * 3.5);
+    ctx.bezierCurveTo(-s*5, -s*1, -s*9, s*2, 0, s*7);
+    ctx.bezierCurveTo(s*9, s*2, s*5, -s*1, 0, s*3.5);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    HEARTS.forEach(h => {
+      h.y    -= h.speed;
+      h.x    += h.drift;
+      h.rot  += h.rotSpeed;
+      if (h.y < -50) {
+        Object.assign(h, makeHeart());
+      }
+      drawHeart(h.x, h.y, h.size, h.rot, h.opacity);
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+</body>
+</html>
